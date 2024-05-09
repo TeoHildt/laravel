@@ -7,6 +7,8 @@ use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
 use App\Http\Requests\StoreStudentRequest;
 use App\Http\Requests\UpdateStudentRequest;
+use App\Http\Requests\StoreAssistRequest;
+use App\Http\Requests\AddAssistRequest;
 
 class StudentController extends Controller
 {
@@ -23,6 +25,38 @@ class StudentController extends Controller
     public function mostrarAsistencias($id){
         $student = Student::with('assists')->find($id);
         return view('students.assists',['student' => $student]);
+    }
+
+    public function showAssists($id)
+    {
+    $student = Student::with('assists')->find($id);
+    return view('students.assists', compact('student'));
+    }
+
+
+    public function checkStudent(StoreAssistRequest $request)
+    {
+    $studentDNI = $request->input('student_dni');
+    $student = Student::where('dni', $studentDNI)->first();
+
+    if ($student) {
+        // Student exists, create an assist
+        Assist::create([
+            'student_dni' => $student->dni,
+            // other fields here...
+        ]);
+
+        return redirect()->back()->with('success', 'Assist created successfully');
+    } else {
+        // Student does not exist
+        return redirect()->back()->with('error', 'Student not found');
+    }
+    }
+
+
+    public function assist() : View
+    {
+        return view('students.assist');
     }
 
     /**
@@ -68,7 +102,7 @@ class StudentController extends Controller
      */
     public function update(UpdateStudentRequest $request, Student $student) : RedirectResponse
     {
-        $product->update($request->all());
+        $student->update($request->all());
         return redirect()->back()
             ->withSuccess('Alumno actualizado exitosamente.');
     }
@@ -78,7 +112,7 @@ class StudentController extends Controller
      */
     public function destroy(Student $student)
     {
-        $product->delete();
+        $student->delete();
         return redirect()->route('students.index')
             ->withSuccess('Alumno eliminado exitosamente.');
     }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Assist;
+use App\Models\Student;
 use App\Http\Requests\StoreAssistRequest;
 use App\Http\Requests\UpdateAssistRequest;
 

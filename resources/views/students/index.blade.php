@@ -14,17 +14,18 @@
         <div class="card">
             <div class="card-header">Student List</div>
             <div class="card-body">
-                <a href="{{ route('students.create') }}" class="btn btn-success btn-sm my-2"><i class="bi bi-plus-circle"></i> Add New Student</a>
+                <a href="{{ route('students.create') }}" class="btn btn-success btn-sm my-2"><i class="bi bi-plus-circle"></i> Añadir estudiante</a>
+                <a href="{{ route('students.assist') }}" class="btn btn-warning btn-sm my-2"><i class="bi bi-plus-circle"></i> Añadir asistencia</a>                
                 <table class="table table-striped table-bordered">
                     <thead>
                       <tr>
-                        <th scope="col">S#</th>
+                        <th scope="col">ID</th>
                         <th scope="col">DNI</th>
                         <th scope="col">Nombre</th>
                         <th scope="col">Apellido</th>
                         <th scope="col">Cumpleaños</th>
                         <th scope="col">Grupo</th>
-                        <th scope="col">Action</th>
+                        <th scope="col">Acciones</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -41,13 +42,13 @@
                                     @csrf
                                     @method('DELETE')
 
-                                    <a href="{{ route('students.show', $student->id) }}" class="btn btn-warning btn-sm"><i class="bi bi-eye"></i> Show</a>
+                                    <a href="{{ route('students.show', $student->id) }}" class="btn btn-warning btn-sm"><i class="bi bi-eye"></i> Ver</a>
 
-                                    <a href="{{ route('students.edit', $student->id) }}" class="btn btn-primary btn-sm"><i class="bi bi-pencil-square"></i> Edit</a>
+                                    <a href="{{ route('students.edit', $student->id) }}" class="btn btn-primary btn-sm"><i class="bi bi-pencil-square"></i> Editar</a>
                                     
-                                    <a href="{{ route('students.edit', $student->id) }}" class="btn btn-success btn-sm"><i class="bi bi-eye"></i> Asistencia</a>
+                                    <a href="{{ route('students.assists', $student->id) }}" class="btn btn-success btn-sm"><i class="bi bi-eye"></i> Asistencias</a>
 
-                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Do you want to delete this student?');"><i class="bi bi-trash"></i> Delete</button>
+                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Do you want to delete this student?');"><i class="bi bi-trash"></i> Borrar</button>
                                 </form>
                             </td>
                         </tr>

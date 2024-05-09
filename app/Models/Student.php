@@ -19,4 +19,10 @@ class Student extends Model
     public function assists(){
         return $this->hasMany(Assist::class);
     }
+
+    public function assist()
+    {
+    return $this->hasMany('App\Models\Assist', 'student_id');
+    }
+
 }
