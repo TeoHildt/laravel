@@ -15,23 +15,51 @@
                 </div>
             </div>
             <div class="card-body">
-                <form action="{{ route('students.check') }}" method="post">
+
+
+                <form action="{{ route('students.assistDni') }}" method="POST">
                     @csrf
-
-
-
                     <div class="mb-3 row">
-                        <label for="student_dni" class="col-md-4 col-form-label text-md-end text-start">DNI: </label>
-                        <div class="col-md-6">
-                          <input type="text" id="student_dni" name="student_dni">
-                        </div>
+                    <label for="dni">DNI:</label>
+                    <input type="text" id="dni" name="dni">
                     </div>
-                    
-                    <div class="mb-3 row">
-                        <input type="submit" class="col-md-3 offset-md-5 btn btn-primary" value="Añadir asistencia">
-                    </div>
-                    
+                    <button type="submit" >Submit</button>
                 </form>
+                @if(isset($student))
+                    <div>
+                        <h2>Student Information</h2>
+                        <p><strong>ID:</strong> {{ $student->id }}</p>
+                        <p><strong>First Name:</strong> {{ $student->first_name }}</p>
+                        <p><strong>DNI:</strong> {{ $student->dni }}</p>
+                    </div> <br>
+                    <div>
+                        <h2>Asistencias</h2>
+                        <form action="{{ route('students.storeAssist') }}" method="POST">
+                            @csrf
+                            <input  name="student_id" value="{{ $student->id }}">
+                            <button type="submit">Add Assist</button>
+                        </form>
+                        @php
+                        $i = 1;
+                        @endphp
+                        @foreach ($student->assists as $assist)
+
+                        <p>{{ $i }} -> {{ $assist->created_at}}</p>
+                        @php
+                        $i = $i+1; 
+                        @endphp
+                        @endforeach
+                    </div>
+                    @else
+                        @if($errors->any())
+                            <div class="alert alert-danger">
+                                No hay alumnos con ese DNI
+                            </div>
+                        @endif
+                    
+                @endif
+
+
             </div>
         </div>
     </div>    

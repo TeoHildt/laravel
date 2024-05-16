@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\AssistController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -32,9 +33,11 @@ Route::middleware('auth')->group(function () {
 Route::get('students/{id}/assists', [StudentController::class, 'showAssists'])->name('students.assists');
 
 Route::get('students/assist', [StudentController::class, 'assist'])->name('students.assist');
-Route::post('students/assist', [StudentController::class, 'assist'])->name('students.assist');
+Route::post('students/assist', [StudentController::class, 'assistDni'])->name('students.assistDni');
+Route::post('students/assist2', [StudentController::class, 'storeAssist'])->name('students.storeAssist');
 
-Route::post('students/assist', [AssistController::class, 'addAssist'])->name('students.check');
+
+
 
 
 

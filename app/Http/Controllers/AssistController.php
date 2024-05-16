@@ -28,11 +28,25 @@ class AssistController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreAssistRequest $request)
+    public function store(StoreAssistRequest $request, Student $student) : RedirectResponse
     {
-        //
+        Assist::create($request->all());
+        return redirect()->route('students.assist')
+            ->withSuccess('Nuevo alumno añadido exitosamente.');
     }
 
+
+    public function storeAssist(StoreAssistRequest $request) : RedirectResponse
+    {
+        $student_id = $request->student_id;
+        
+        Assist::create([
+            'student_id' => $student_id,
+        ]);
+        return redirect()->back()->withSuccess('Assist added successfully.');
+        
+    }
+ 
     /**
      * Display the specified resource.
      */

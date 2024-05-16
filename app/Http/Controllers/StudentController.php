@@ -3,12 +3,16 @@
 namespace App\Http\Controllers;
 //hola
 use App\Models\Student;
+use App\Models\Assist;
+use App\Http\Controllers\AssistController;
 use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use App\Http\Requests\StoreStudentRequest;
 use App\Http\Requests\UpdateStudentRequest;
 use App\Http\Requests\StoreAssistRequest;
 use App\Http\Requests\AddAssistRequest;
+use App\Http\Requests\StudentAssistRequest;
 
 class StudentController extends Controller
 {
@@ -34,24 +38,7 @@ class StudentController extends Controller
     }
 
 
-    public function checkStudent(StoreAssistRequest $request)
-    {
-    $studentDNI = $request->input('student_dni');
-    $student = Student::where('dni', $studentDNI)->first();
 
-    if ($student) {
-        // Student exists, create an assist
-        Assist::create([
-            'student_dni' => $student->dni,
-            // other fields here...
-        ]);
-
-        return redirect()->back()->with('success', 'Assist created successfully');
-    } else {
-        // Student does not exist
-        return redirect()->back()->with('error', 'Student not found');
-    }
-    }
 
 
     public function assist() : View
@@ -59,27 +46,63 @@ class StudentController extends Controller
         return view('students.assist');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+
+
+    public function assistDni(StudentAssistRequest $request)
+    {
+        $dni = $request->input('dni');
+        $student = Student::with('assists')->where('dni', $dni)->first();
+
+        if ($student) {
+            // si encuentra
+            return view('students.assist', compact('student'));
+        } else {
+            // si no
+            return back()->withErrors(['dni' => 'No student found with the provided DNI.']);
+        }
+    }
+
+    public function storeAssist(StoreAssistRequest $request) : RedirectResponse
+    {
+       
+        $student_id = $request->student_id;
+        $student = Student::where('id',$student_id)->first();
+        if($student){
+
+        Assist::create([
+            'student_id' => $student_id,
+            'created_at' => now()->toDateString(),
+        ]);
+
+        return redirect()->back()->withSuccess('Assist added successfully.');
+    }
+    }
+ 
+
+    //======CREATE==========
     public function create() : View
     {
         return view('students.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+    //======STORE========
     public function store(StoreStudentRequest $request) : RedirectResponse
     {
+        $data = $request->except('_token');
+
+        $dob = \Carbon\Carbon::parse($data['birthday']);
+        $age = $dob->diffInYears(\Carbon\Carbon::now());
+
+        if ($age < 18){
+            return redirect()->back()->withInput()->withErrors(['birthday' => 'muy chico']);
+        }
+
         Student::create($request->all());
         return redirect()->route('students.index')
             ->withSuccess('Nuevo alumno añadido exitosamente.');
     }
 
-    /**
-     * Display the specified resource.
-     */
+    //=======SHOW=======
     public function show(Student $student) : View
     {
         return view('students.show', [
@@ -87,9 +110,7 @@ class StudentController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+    //=======EDIT=========
     public function edit(Student $student) : View
     {
         return view('students.edit', [

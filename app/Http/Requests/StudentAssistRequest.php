@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreAssistRequest extends FormRequest
+class StudentAssistRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,7 +22,7 @@ class StoreAssistRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'student_id' => 'required',
+            'dni' => 'required|exists:students,dni'
         ];
     }
 }
