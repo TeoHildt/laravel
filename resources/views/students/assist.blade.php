@@ -36,7 +36,7 @@
                         <h2>Asistencias</h2>
                         <form action="{{ route('students.storeAssist') }}" method="POST">
                             @csrf
-                            <input  name="student_id" value="{{ $student->id }}">
+                            <input  type="hidden" name="student_id" value="{{ $student->id }}">
                             <button type="submit">Add Assist</button>
                         </form>
                         @php

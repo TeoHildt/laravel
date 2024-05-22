@@ -11,6 +11,10 @@
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     {{ __("You're logged in!") }}
                 </div>
+                <div>
+                    <a href="{{route('students.index')}}" class="btn-success"> 
+                        <button class="btn btn-success">VER ESTUDIANTES</button> </a>
+                </div>
             </div>
         </div>
     </div>

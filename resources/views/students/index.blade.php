@@ -10,7 +10,9 @@
                 {{ $message }}
             </div>
         @endif
-
+        @php
+        $currentDate = now()->format('M-d');   
+       @endphp
         <div class="card">
             <div class="card-header">Student List</div>
             <div class="card-body">
@@ -35,7 +37,17 @@
                             <td>{{ $student->dni }}</td>
                             <td>{{ $student->first_name }}</td>
                             <td>{{ $student->last_name }}</td>
-                            <td>{{ $student->birthday }}</td>
+                            <td>
+
+                                {{ $student->birthday }}
+                                
+
+                                @if (date('d-m', strtotime($student->birthday)) === date('d-m'))
+
+                                    <p class="btn-success">¡Hoy cumple años!</p>
+                                @endif
+                            
+                            </td>
                             <td>{{ $student->group }}</td>
                             <td>
                                 <form action="{{ route('students.destroy', $student->id) }}" method="post">
