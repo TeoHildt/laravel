@@ -29,7 +29,7 @@
                     </div>
 
                     <div class="mb-3 row">
-                        <label for="first_name" class="col-md-4 col-form-label text-md-end text-start">First Name</label>
+                        <label for="first_name" class="col-md-4 col-form-label text-md-end text-start">Nombres</label>
                         <div class="col-md-6">
                           <input type="text" class="form-control @error('first_name') is-invalid @enderror" id="first_name" name="first_name" value="{{ old('first_name') }}">
                             @if ($errors->has('first_name'))
@@ -39,7 +39,7 @@
                     </div>
 
                     <div class="mb-3 row">
-                        <label for="last_name" class="col-md-4 col-form-label text-md-end text-start">Last Name</label>
+                        <label for="last_name" class="col-md-4 col-form-label text-md-end text-start">Apellido </label>
                         <div class="col-md-6">
                           <input type="text" class="form-control @error('last_name') is-invalid @enderror" id="last_name" name="last_name" value="{{ old('last_name') }}">
                             @if ($errors->has('last_name'))
@@ -49,7 +49,7 @@
                     </div>
 
                     <div class="mb-3 row">
-                        <label for="birthday" class="col-md-4 col-form-label text-md-end text-start">birthday</label>
+                        <label for="birthday" class="col-md-4 col-form-label text-md-end text-start">Fecha de nacimiento</label>
                         <div class="col-md-6">
                           <input type="date" class="form-control @error('birthday') is-invalid @enderror" id="birthday" name="birthday" value="{{ old('birthday') }}">
                             @if ($errors->has('birthday'))
@@ -59,7 +59,7 @@
                     </div>
 
                     <div class="mb-3 row">
-                        <label for="group" class="col-md-4 col-form-label text-md-end text-start">grupo</label>
+                        <label for="group" class="col-md-4 col-form-label text-md-end text-start">Grupo</label>
                         <div class="col-md-6">
                           <input type="text" step="0.01" class="form-control @error('group') is-invalid @enderror" id="group" name="group" value="{{ old('group') }}">
                             @if ($errors->has('group'))

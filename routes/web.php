@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\AssistController;
+use App\Http\Controllers\ParametroController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,6 +35,10 @@ Route::middleware('auth')->group(function () {
 Route::get('students/assist', [StudentController::class, 'assist'])->name('students.assist');
 Route::post('students/assist', [StudentController::class, 'assistDni'])->name('students.assistDni');
 Route::post('students/assist2', [StudentController::class, 'storeAssist'])->name('students.storeAssist');
+
+Route::get('parametro', [ParametroController::class, 'parametro'])->name('students.parametro');
+Route::post('parametro', [ParametroController::class, 'storeParam'])->name('students.storeParam');
+
 Route::resource('students', StudentController::class);
 
 });

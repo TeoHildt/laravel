@@ -23,8 +23,18 @@
                     <label for="dni">DNI:</label>
                     <input type="text" id="dni" name="dni">
                     </div>
-                    <button type="submit" >Submit</button>
+                    <button type="submit" >Buscar</button>
                 </form>
+
+                @if (session('success'))
+                    <div class="alert alert-success">
+                        {{ session('success') }}
+                    </div>
+                @endif
+
+
+
+
                 @if(isset($student))
                     <div>
                         <h2>Student Information</h2>
@@ -37,7 +47,7 @@
                         <form action="{{ route('students.storeAssist') }}" method="POST">
                             @csrf
                             <input  type="hidden" name="student_id" value="{{ $student->id }}">
-                            <button type="submit">Add Assist</button>
+                            <button type="submit">Añadir Asistencia</button>
                         </form>
                         @php
                         $i = 1;

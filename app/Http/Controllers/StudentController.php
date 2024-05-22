@@ -74,7 +74,7 @@ class StudentController extends Controller
             'created_at' => now()->toDateString(),
         ]);
 
-        return redirect()->back()->withSuccess('Assist added successfully.');
+        return back()->withSuccess('Asistencia añadida con éxito');
     }
     }
  
@@ -93,8 +93,8 @@ class StudentController extends Controller
         $dob = \Carbon\Carbon::parse($data['birthday']);
         $age = $dob->diffInYears(\Carbon\Carbon::now());
 
-        if ($age < 18){
-            return redirect()->back()->withInput()->withErrors(['birthday' => 'muy chico']);
+        if ($age < 17){
+            return redirect()->back()->withInput()->withErrors(['birthday' => 'El alumno debe tener una edad mínima de 17 años']);
         }
 
         Student::create($request->all());
