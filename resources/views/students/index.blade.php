@@ -27,7 +27,7 @@
                         <th scope="col">Nombre</th>
                         <th scope="col">Apellido</th>
                         <th scope="col">Cumpleaños</th>
-                        <th scope="col">Grupo</th>
+                        <th scope="col">Año</th>
                         <th scope="col">Acciones</th>
                       </tr>
                     </thead>
@@ -59,7 +59,7 @@
 
                                     <!--<a href="{{ route('students.edit', $student->id) }}" class="btn btn-primary btn-sm"><i class="bi bi-pencil-square"></i> Editar</a>-->
                                     
-                                    <a href="{{ route('students.assists', $student->id) }}" class="btn btn-success btn-sm"><i class="bi bi-eye"></i> Asistencias</a>
+                                    <a href="{{ route('students.assists', $student->id) }}" class="btn btn-success btn-sm"><i class="bi bi-eye"></i> Condición</a>
 
                                     <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Do you want to delete this student?');"><i class="bi bi-trash"></i> Borrar</button>
                                 </form>

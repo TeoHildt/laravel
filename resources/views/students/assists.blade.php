@@ -8,13 +8,19 @@
         <div class="card">
             <div class="card-header">
                 <div class="float-start">
-                    Asistencias de {{$student->first_name}} {{$student->last_name}}
+                    Condición de {{$student->first_name}} {{$student->last_name}}
                 </div>
                 <div class="float-end">
                     <a href="{{ route('students.index') }}" class="btn btn-primary btn-sm">&larr; Back</a>
                 </div>
             </div>
+
+            
             <div class="card-body">
+
+            Porcentaje de asistencia: <br>
+            Condición:
+            
      
             @php
             $i = 1;

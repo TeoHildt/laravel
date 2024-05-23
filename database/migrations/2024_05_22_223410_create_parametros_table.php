@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('parametros', function (Blueprint $table) {
             $table->id();
+            $table->timestamps();
             $table->integer('total_clases');
             $table->integer('promocion');
             $table->integer('regularizacion');

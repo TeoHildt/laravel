@@ -36,8 +36,11 @@ Route::get('students/assist', [StudentController::class, 'assist'])->name('stude
 Route::post('students/assist', [StudentController::class, 'assistDni'])->name('students.assistDni');
 Route::post('students/assist2', [StudentController::class, 'storeAssist'])->name('students.storeAssist');
 
-Route::get('parametro', [ParametroController::class, 'parametro'])->name('students.parametro');
-Route::post('parametro', [ParametroController::class, 'storeParam'])->name('students.storeParam');
+
+Route::get('/parametro', [ParametroController::class, 'parametro'])->name('students.parametro');
+Route::post('/parametro', [ParametroController::class, 'update'])->name('students.parametro1');
+
+
 
 Route::resource('students', StudentController::class);
 
