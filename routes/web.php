@@ -5,7 +5,8 @@ use App\Http\Controllers\StudentController;
 use App\Http\Controllers\AssistController;
 use App\Http\Controllers\ParametroController;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\PDFController;
+use App\Http\Controllers\LogController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -37,14 +38,21 @@ Route::post('students/assist', [StudentController::class, 'assistDni'])->name('s
 Route::post('students/assist2', [StudentController::class, 'storeAssist'])->name('students.storeAssist');
 
 
+
+
 Route::get('/parametro', [ParametroController::class, 'parametro'])->name('students.parametro');
 Route::post('/parametro', [ParametroController::class, 'update'])->name('students.parametro1');
 
 
-
+Route::get('exportPDF/{id}', [StudentController::class, 'exportPDF'])->name('students.exportPDF');
 Route::resource('students', StudentController::class);
-
+Route::resource('logs', LogController::class);
 });
+
+
+
+
+
 
 
 require __DIR__.'/auth.php';

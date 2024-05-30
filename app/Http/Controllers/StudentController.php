@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 //hola
 use App\Models\Student;
 use App\Models\Assist;
+use App\Models\Log;
+use App\Models\Parametro;
 use App\Http\Controllers\AssistController;
+use App\Http\Controllers\ParametroController;
 use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -13,6 +16,12 @@ use App\Http\Requests\UpdateStudentRequest;
 use App\Http\Requests\StoreAssistRequest;
 use App\Http\Requests\AddAssistRequest;
 use App\Http\Requests\StudentAssistRequest;
+use Illuminate\Support\Facades\Auth;
+use PDF;
+
+
+//$clientIP = \Request::ip();
+//$clientIP = $request->ip();
 
 class StudentController extends Controller
 {
@@ -31,10 +40,24 @@ class StudentController extends Controller
         return view('students.assists',['student' => $student]);
     }
 
+    public function exportPDF($id){
+        
+        $parametro = Parametro::where('id', 1)->first();
+        $student = Student::with('assists')->find($id);
+        // Share data with the view
+        $pdf = PDF::loadView('students.assists', compact('student','parametro'));
+    
+        // Download the PDF
+        return $pdf->download('filename.pdf');
+    }
+
     public function showAssists($id)
     {
+    $parametro = Parametro::where('id', 1)->first();
+
     $student = Student::with('assists')->find($id);
-    return view('students.assists', compact('student'));
+
+    return view('students.assists', compact('student', 'parametro'));
     }
 
 
@@ -82,6 +105,18 @@ class StudentController extends Controller
     //======CREATE==========
     public function create() : View
     {
+
+        $clientIP = $_SERVER['REMOTE_ADDR'];
+        
+        
+
+
+        Log::create([
+            'user_id' => Auth::user()->id,
+            'action' => 'Create Student',
+            'ip' => $clientIP,
+            'browser' => $clientBR,
+        ]);
         return view('students.create');
     }
 
@@ -103,7 +138,7 @@ class StudentController extends Controller
     }
 
     //=======SHOW=======
-    public function show(Student $student) : View
+    public function show(UpdateStudentRequest $student) : View
     {
         return view('students.show', [
             'student' => $student
@@ -113,6 +148,15 @@ class StudentController extends Controller
     //=======EDIT=========
     public function edit(Student $student) : View
     {
+        $clientIP = $_SERVER['REMOTE_ADDR'];
+
+        Log::create([
+            'user_id' => Auth::user()->id,
+            'action' => 'Edit Student',
+            'ip' => $clientIP,
+            'browser' => 'Browser',
+        ]);
+
         return view('students.edit', [
             'student' => $student
         ]);
@@ -128,11 +172,19 @@ class StudentController extends Controller
             ->withSuccess('Alumno actualizado exitosamente.');
     }
 
-    /**
-     * Remove the specified resource from storage.
+    /*
+    ==================DESTROY============================
      */
     public function destroy(Student $student)
     {
+        $clientIP = $_SERVER['REMOTE_ADDR'];
+        Log::create([
+            'user_id' => Auth::user()->id,
+            'action' => 'Delete Student',
+            'ip' => $clientIP,
+            'browser' => 'Browser',
+        ]);
+
         $student->delete();
         return redirect()->route('students.index')
             ->withSuccess('Alumno eliminado exitosamente.');

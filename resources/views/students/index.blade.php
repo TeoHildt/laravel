@@ -2,6 +2,8 @@
 
 @section('content')
 
+
+
 <div class="row justify-content-center mt-3">
     <div class="col-md-12">
 
@@ -10,6 +12,18 @@
                 {{ $message }}
             </div>
         @endif
+
+        @php
+        $id = Auth::user()->role_id;
+        @endphp
+
+
+
+
+
+
+
+
         @php
         $currentDate = now()->format('M-d');   
        @endphp
@@ -18,7 +32,10 @@
             <div class="card-body">
                 <a href="{{ route('students.create') }}" class="btn btn-success btn-sm my-2"><i class="bi bi-plus-circle"></i> Añadir estudiante</a>
                 <a href="{{ route('students.assist') }}" class="btn btn-warning btn-sm my-2"><i class="bi bi-plus-circle"></i> Añadir asistencia</a>
-                <a href="{{ route('students.parametro')}}" class="btn btn-info btn-sm my-2"><i class="bi bi-plus-circle"></i> Parámetros</a>                
+                <a href="{{ route('students.parametro')}}" class="btn btn-info btn-sm my-2"><i class="bi bi-plus-circle"></i> Parámetros</a>
+                @if($id = 1)
+                <a href="{{ route('logs.index')}}" class="btn btn-danger btn-sm my-2"><i class="bi bi-plus-circle"></i> Logs</a>        
+                @endif
                 <table class="table table-striped table-bordered">
                     <thead>
                       <tr>
@@ -57,7 +74,7 @@
 
                                     <a href="{{ route('students.show', $student->id) }}" class="btn btn-warning btn-sm"><i class="bi bi-eye"></i> Ver</a>
 
-                                    <!--<a href="{{ route('students.edit', $student->id) }}" class="btn btn-primary btn-sm"><i class="bi bi-pencil-square"></i> Editar</a>-->
+                                    <a href="{{ route('students.edit', $student->id) }}" class="btn btn-primary btn-sm"><i class="bi bi-pencil-square"></i> Editar</a>
                                     
                                     <a href="{{ route('students.assists', $student->id) }}" class="btn btn-success btn-sm"><i class="bi bi-eye"></i> Condición</a>
 
