@@ -27,3 +27,5 @@
 
 8)- Copiar la dirección dada y ejecutarla en el navegador para comenzar a utilizar el sistema
 
+Importante: El usuario que actúe como administrador deberá intercambiar su numero de rol por "1" en la base de datos luego de registrarse
+
