@@ -7,8 +7,9 @@
 2)- Abrir Laragon y hacer clic en el botón para abrir la terminal de comandos. Una vez dentro deberá ingresar el siguiente comando:
 >cd laravel (esto hará que los comandos se ejecuten en el directorio del programa)
 
-3)- Ingresar el siguiente comando:
+3)- Ingresar los siguientes comandos:
 >composer install (esto instalará composer, que es necesario para el funcionamiento del proyecto)
+>composer require barryvdh/laravel-dompdf (esto instalará dompdf, necesario para determinadas funciones)
 
 4)- Ingresar el siguiente comando:
 >php artisan key:generate
