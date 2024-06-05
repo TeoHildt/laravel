@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
             $table->string('action');
-            $table->integer('ip');
+            $table->string('ip');
             $table->string('browser');
 
         });

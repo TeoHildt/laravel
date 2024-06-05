@@ -107,7 +107,7 @@ class StudentController extends Controller
     {
 
         $clientIP = $_SERVER['REMOTE_ADDR'];
-        
+        $userAgent = $_SERVER['HTTP_USER_AGENT'];
         
 
 
@@ -115,7 +115,7 @@ class StudentController extends Controller
             'user_id' => Auth::user()->id,
             'action' => 'Create Student',
             'ip' => $clientIP,
-            'browser' => $clientBR,
+            'browser' => $userAgent,
         ]);
         return view('students.create');
     }
@@ -149,12 +149,14 @@ class StudentController extends Controller
     public function edit(Student $student) : View
     {
         $clientIP = $_SERVER['REMOTE_ADDR'];
+        $userAgent = $_SERVER['HTTP_USER_AGENT'];
+        
 
         Log::create([
             'user_id' => Auth::user()->id,
             'action' => 'Edit Student',
             'ip' => $clientIP,
-            'browser' => 'Browser',
+            'browser' => $userAgent,
         ]);
 
         return view('students.edit', [
@@ -178,11 +180,12 @@ class StudentController extends Controller
     public function destroy(Student $student)
     {
         $clientIP = $_SERVER['REMOTE_ADDR'];
+        $userAgent = $_SERVER['HTTP_USER_AGENT'];
         Log::create([
             'user_id' => Auth::user()->id,
             'action' => 'Delete Student',
             'ip' => $clientIP,
-            'browser' => 'Browser',
+            'browser' => $userAgent,
         ]);
 
         $student->delete();

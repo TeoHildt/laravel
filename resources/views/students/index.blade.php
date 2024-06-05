@@ -33,8 +33,9 @@
                 <a href="{{ route('students.create') }}" class="btn btn-success btn-sm my-2"><i class="bi bi-plus-circle"></i> Añadir estudiante</a>
                 <a href="{{ route('students.assist') }}" class="btn btn-warning btn-sm my-2"><i class="bi bi-plus-circle"></i> Añadir asistencia</a>
                 <a href="{{ route('students.parametro')}}" class="btn btn-info btn-sm my-2"><i class="bi bi-plus-circle"></i> Parámetros</a>
-                @if($id = 1)
+                @if($id == 1)
                 <a href="{{ route('logs.index')}}" class="btn btn-danger btn-sm my-2"><i class="bi bi-plus-circle"></i> Logs</a>        
+                
                 @endif
                 <table class="table table-striped table-bordered">
                     <thead>
