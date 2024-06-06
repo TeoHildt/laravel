@@ -138,7 +138,7 @@ class StudentController extends Controller
     }
 
     //=======SHOW=======
-    public function show(UpdateStudentRequest $student) : View
+    public function show(Student $student) : View
     {
         return view('students.show', [
             'student' => $student
