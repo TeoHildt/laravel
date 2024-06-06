@@ -1,31 +1,32 @@
-..--========INSTRUCCIONES DE INSTALACIÓN========--..
+..--========INSTRUCCIONES DE INSTALACIÃ“N========--..
 
-• REQUISITOS: Laragon, PHP, Laravel
+â€¢ REQUISITOS: Laragon, PHP, Laravel
 
 1)- Clonar el proyecto a la carpeta "WWW" dentro de el directorio donde haya instalado Laragon.
 
-2)- Abrir Laragon y hacer clic en el botón para abrir la terminal de comandos. Una vez dentro deberá ingresar el siguiente comando:
->cd laravel (esto hará que los comandos se ejecuten en el directorio del programa)
+2)- Abrir Laragon y hacer clic en el botÃ³n para abrir la terminal de comandos. Una vez dentro deberÃ¡ ingresar el siguiente comando:
+>cd laravel (esto harÃ¡ que los comandos se ejecuten en el directorio del programa)
 
 3)- Ingresar los siguientes comandos:
->composer install (esto instalará composer, que es necesario para el funcionamiento del proyecto)
->composer require barryvdh/laravel-dompdf (esto instalará dompdf, necesario para determinadas funciones)
+>composer install (esto instalarÃ¡ composer, que es necesario para el funcionamiento del proyecto)
+>composer require barryvdh/laravel-dompdf (esto instalarÃ¡ dompdf, necesario para determinadas funciones)
 
 4)- Ingresar el siguiente comando:
 >php artisan key:generate
 
-5)- Ingresar el siguiente comando:
->php artisan migrate (esto creará la base de datos con sus respectivas tablas)
+5)- Ingresar los siguientes comandos:
+>php artisan migrate (esto crearÃ¡ la base de datos con sus respectivas tablas)
+>php artisan db:seed --class=ParametroSeeder
 
 6)- Ingresar los siguientes comandos:
 >npm install vite --save-dev
->npm run build
-(Estos son necesarios para el funcionamiento de la gestión de cuentas)
+>npm run dev
+(Estos son necesarios para el funcionamiento de la gestiÃ³n de cuentas)
 
-7)- Para inicializar el servidor, ingresar el siguiente comando:
+7)- Para inicializar el servidor, ingresar el siguiente comando (puede que necesite abrir una nueva consola):
 >php artisan serve
 
-8)- Copiar la dirección dada y ejecutarla en el navegador para comenzar a utilizar el sistema
+8)- Copiar la direcciÃ³n dada y ejecutarla en el navegador para comenzar a utilizar el sistema
 
-Importante: El usuario que actúe como administrador deberá intercambiar su numero de rol por "1" en la base de datos luego de registrarse
+Importante: El usuario que actÃºe como administrador deberÃ¡ intercambiar su numero de rol por "1" en la base de datos luego de registrarse
 
